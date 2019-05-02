@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>            
+        <title>Laura Fernandez - Aplicación 18 19</title>
+        <link>http://daw-used.sauces.local/DAW210/public_html/ProyectoDWES/ProyectoTema6/index.php</link>
+        <description>Aplicación 18 19</description>
+    
+        <item>
+            <title>Catálogo de requisitos</title>
+            <link>http://daw-used.sauces.local/DAW210/public_html/ProyectoDWES/ProyectoTema6/doc/modelosAplicacion/CatalogoDeRequisitos.pdf</link>
+            <description>Catálogo de requisitos</description>
+            <pubDate>Wed, 6 Feb 2019 17:15:00 GMT</pubDate>                
+        </item>
+         <item>
+            <title>Diagrama de clases</title>
+            <link>http://daw-used.sauces.local/DAW210/public_html/ProyectoDWES/ProyectoTema6/doc/modelosAplicacion/clases.PNG</link>
+            <description>Diagrama de clases</description>
+            <pubDate>Mon, 4 Feb 2019 15:30:00 GMT</pubDate>                    
+        </item>
+        <item>
+            <title>Estructura de almacenamiento</title>
+            <link>http://daw-used.sauces.local/DAW210/public_html/ProyectoDWES/ProyectoTema6/doc/modelosAplicacion/CasosDeUso.PNG</link>
+            <description>Estructura de almacenamiento</description>
+            <pubDate>Mon, 4 Feb 2019 15:30:00 GMT</pubDate>                    
+        </item>
+        <item>
+            <title>Modelo físico de datos</title>
+            <link>http://daw-used.sauces.local/DAW210/public_html/ProyectoDWES/ProyectoTema6/doc/modelosAplicacion/180503ModeloFisicoDeDatos.jpg</link>
+            <description>Modelo físico de datos</description>
+            <pubDate>Mon, 4 Feb 2019 15:30:00 GMT</pubDate>                    
+        </item>
+        <item>
+            <title>Árbol de navegación</title>
+            <link>http://daw-used.sauces.local/DAW210/public_html/ProyectoDWES/ProyectoTema6/doc/modelosAplicacion/imagen.PNG</link>
+            <description>Árbol de navegación</description>
+            <pubDate>Mon, 4 Feb 2019 15:30:00 GMT</pubDate>                    
+        </item>
+        <item>
+            <title>Diagrama de casos de uso</title>
+            <link>http://daw-used.sauces.local/DAW210/public_html/ProyectoDWES/ProyectoTema6/doc/modelosAplicacion/180503CasosDeUso.jpg</link>
+            <description>Diagrama de casos de uso</description>
+            <pubDate>Mon, 4 Feb 2019 15:30:00 GMT</pubDate>                    
+        </item>
+        <item>
+            <title>Las tecnologías utilizadas</title>
+            <link>http://daw-used.sauces.local/DAW210/public_html/ProyectoDWES/ProyectoTema6/webroot/img/tecnologias.PNG</link>
+            <description>Las tecnologías utilizadas</description>
+            <pubDate>Mon, 4 Feb 2019 15:30:00 GMT</pubDate>                    
+        </item>
+         <item>
+            <title>Curriculum</title>
+            <link>http://daw-used.sauces.local/DAW210/public_html/ProyectoDWES/ProyectoTema6/webroot/img/CV-Europass-20190208-Fernandez-ES.pdf</link>
+            <description>Curriculum </description>
+            <pubDate>Mon, 4 Feb 2019 15:30:00 GMT</pubDate>                    
+        </item>
+        <item>
+            <title>Repositorio Git Lab de la aplicación</title>
+            <link>http://DAW-USGIT.sauces.local/laura.ferfer.7/ProyectoAplicacionFinal18-19</link>
+            <description>Aquí podrás acceder al repositiorio</description>
+            <pubDate>Mon, 4 Feb 2019 15:30:00 GMT</pubDate>                    
+        </item>  
+    </channel>
+</rss>        
