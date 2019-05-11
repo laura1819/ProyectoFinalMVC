@@ -22,7 +22,7 @@
 
 
 <!-- Header -->
-<header class="masthead bg-primary text-white text-center">
+<header class="masthead bg-primary text-white text-center">    
     <div id="login">
         <h3 class="text-center text-white pt-10">Formulario de Registro</h3>
         <div class="container">
@@ -67,4 +67,3 @@
     </div>
 </header>
 </form>
-
