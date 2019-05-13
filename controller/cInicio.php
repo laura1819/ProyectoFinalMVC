@@ -13,8 +13,10 @@
  * @modifiedDate 15/04/2019
  * Fecha ultima revision 16-01-2019
  */
-error_reporting(E_ALL);
-        ini_set('display_errors', '0');
+
+require_once 'model/Rest.php';
+$_SESSION['estacion'] = Rest::datosDelTiempo();
+
 if (isset($_REQUEST['Salir'])) { // si hemos pulsado en salir 
     unset($_SESSION['usuario']);
     session_destroy(); // destruimos la sesion y vamos al index sin usuario en la session

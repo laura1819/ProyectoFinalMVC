@@ -15,6 +15,8 @@ require_once 'config/configuracionDB.php';
 require_once 'core/validacionFormularios.php';
 // clases de la aplicacion
 require_once 'model/Usuario.php'; 
+// clase del rest
+require_once 'model/Rest.php';
 
 
 
@@ -27,6 +29,7 @@ $controladores = [
     'cambiarPassword' => 'controller/cCambiarPassword.php',
     'wip' => 'controller/cWip.php',
     'errores' => 'controller/cErrores.php',
+    'rest' => 'controller/cREST.php',
 ];
 
 $vistas = [
@@ -39,5 +42,6 @@ $vistas = [
     'cambiarPassword' => 'view/vCambiarPassword.php',
     'wip' => 'view/vWip.php',
     'errores' => 'view/vErrores.php',
+    'rest' => 'controller/vRest.php',
 ];
 ?>

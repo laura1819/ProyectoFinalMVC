@@ -80,5 +80,55 @@
 
                             </div>
                         </section>
+
+                        
+                        <section class="portfolio" id="portfolio">
+                            <div class="container">
+                                <h2 class="text-center text-uppercase text-secondary mb-0">Opciones</h2>
+                                <hr class="star-dark mb-5">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h3 class="text-center text-uppercase text-secondary mb-0">Perfil</h3>
+                                        <input type="submit" name="edPerfil" value="Editar Descripcion" class="btn btn-lg btn-block btn-success">
+                                        <input type="submit" name="cambiarPass" value="Cambiar Contraseña" class="btn btn-lg btn-block btn-success">
+                                        <input type="submit" name="borrarCuenta" value="Borrar Cuenta" class="btn btn-lg btn-block btn-danger">
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h3 class="text-center text-uppercase text-secondary mb-0">Mantenimiento</h3>
+                                        <input type="submit" name="wip" value="Mto.Departamentos" class="btn btn-lg btn-block btn-success">
+                                        <?php if ($_SESSION['usuario']->getPerfil() == 'Administrador') { ?>
+                                            <input type="submit" name="wip" value="Mantenimiento de Usuarios" class="btn btn-lg btn-block btn-warning"> 
+                                        <?php } ?>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h3 class="text-center text-uppercase text-secondary mb-0">ServiciosWeb</h3>
+                                        <input type="submit" name="wip" value="SOAP" class="btn btn-lg btn-block btn-success">
+                                        <input type="submit" name="wip" value="REST" class="btn btn-lg btn-block btn-success">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </section>
+                        
+                        
+                        <div class="card mb-3 col-lg-4 float-right">
+                            <h3 class="card-header">El tiempo en <?php echo ucwords(strtolower($_SESSION['estacion']['ubi'])); ?></h3>
+                            <div class="card-body">
+                                <p class="card-text"><?php echo '<b>Longitud/latitud: </b>' . $_SESSION['estacion']['lon'] . 'º, ' . $_SESSION['estacion']['lat'] . 'º' ?></p>
+                                <p class="card-text"><?php echo '<b>Altitud: </b>' . $_SESSION['estacion']['alt'] . 'm' ?></p>
+                                <p class="card-text"><?php echo '<b>Último dato registrado: </b>' . $_SESSION['estacion']['fint']; ?></p>
+                                <p class="card-text"><?php echo '<b>Precipitaciones: </b>' . $_SESSION['estacion']['prec'] . 'L/m²' ?></p>
+                                <p class="card-text"><?php echo '<b>Temperatura mínima: </b>' . $_SESSION['estacion']['tamin'] . 'ºC' ?></p>
+                                <p class="card-text"><?php echo '<b>Temperatura actual: </b>' . $_SESSION['estacion']['ta'] . 'ºC' ?></p>
+                                <p class="card-text"><?php echo '<b>Temperatura máxima: </b>' . $_SESSION['estacion']['tamax'] . 'ºC' ?></p>
+                                <p class="card-text"><?php echo '<b>Velocidad media del viento: </b>' . $_SESSION['estacion']['vv'] . 'm/s' ?></p>
+                            </div>
+                        </div>
+
+
                     </form>
 
