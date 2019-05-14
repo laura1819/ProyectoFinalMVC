@@ -17,6 +17,8 @@ require_once 'core/validacionFormularios.php';
 require_once 'model/Usuario.php'; 
 // clase del rest
 require_once 'model/Rest.php';
+// clase para los departamentos
+require_once 'model/Departamento.php';
 
 
 
@@ -29,7 +31,10 @@ $controladores = [
     'cambiarPassword' => 'controller/cCambiarPassword.php',
     'wip' => 'controller/cWip.php',
     'errores' => 'controller/cErrores.php',
-    'rest' => 'controller/cREST.php',
+    'rest' => 'controller/cRest.php',
+    'mtoDepartamentos' => 'controller/cMtoDepartamentos.php',
+    'altaDepartamentos' => 'controller/caltaDepartamentos.php',
+   
 ];
 
 $vistas = [
@@ -42,6 +47,9 @@ $vistas = [
     'cambiarPassword' => 'view/vCambiarPassword.php',
     'wip' => 'view/vWip.php',
     'errores' => 'view/vErrores.php',
-    'rest' => 'controller/vRest.php',
+    'rest' => 'view/vRest.php',
+    'mtoDepartamentos' => 'view/vMtoDepartamentos.php',
+    'altaDepartamentos' => 'view/valtaDepartamentos.php',
+    
 ];
 ?>

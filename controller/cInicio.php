@@ -7,15 +7,18 @@
  * @modifiedDate 28/01/2019
  * @version 1.5
  */
-
 /**
  * @author Laura Fernandez
  * @modifiedDate 15/04/2019
  * Fecha ultima revision 16-01-2019
  */
-
 require_once 'model/Rest.php';
-$_SESSION['estacion'] = Rest::datosDelTiempo();
+$_SESSION['aemet'] = Rest::datosDelTiempo();
+
+
+
+
+
 
 if (isset($_REQUEST['Salir'])) { // si hemos pulsado en salir 
     unset($_SESSION['usuario']);
@@ -33,7 +36,7 @@ if (isset($_REQUEST['edPerfil'])) { // si pulsamos editar perfil
 
 if (isset($_REQUEST['borrarCuenta'])) {  // si pulsamos en borrar cuenta
     $_SESSION['pagina'] = 'borrarCuenta'; // vamos a la pagina borrar cuenta
-    header("Location: index.php"); 
+    header("Location: index.php");
     exit;
 }
 if (isset($_REQUEST['cambiarPass'])) { // si pulsamos cambiar pass
@@ -42,6 +45,11 @@ if (isset($_REQUEST['cambiarPass'])) { // si pulsamos cambiar pass
     exit;
 }
 
+if (isset($_REQUEST['rest'])) { // si pulsamos cambiar pass
+    $_SESSION['pagina'] = 'rest'; // vamos a la pagina cambiar pass
+    header("Location: index.php");
+    exit;
+}
 
 if (isset($_REQUEST['wip'])) { // si pulsamos editar perfil
     $_SESSION['pagina'] = 'wip'; // vamos a la pagina mi cuenta
@@ -49,10 +57,16 @@ if (isset($_REQUEST['wip'])) { // si pulsamos editar perfil
     exit;
 }
 
+if(isset($_REQUEST['departamentos'])){
+     $_SESSION['pagina'] = 'mtoDepartamentos'; // vamos a la pagina mi cuenta
+    header("Location: index.php");
+    exit;
+}
+
 //if (isset($_REQUEST['wip'])) { 
-  //  $_SESSION['pagina'] = 'wip'; 
-  //  header("Location: index.php");
- //   exit;
+//  $_SESSION['pagina'] = 'wip'; 
+//  header("Location: index.php");
+//   exit;
 //}
 
 
