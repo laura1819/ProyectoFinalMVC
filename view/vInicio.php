@@ -77,7 +77,7 @@
                                     <div class="col-md-4">
                                         <h3 class="text-center text-uppercase text-secondary mb-0">ServiciosWeb</h3>
                                         <input type="submit" name="wip" value="SOAP" class="btn btn-lg btn-block btn-success">
-                                        <input type="submit" name="rest" value="REST" class="btn btn-lg btn-block btn-success">
+                                        <input type="submit" name="wip" value="REST" class="btn btn-lg btn-block btn-success">
 
                                     </div>
 
