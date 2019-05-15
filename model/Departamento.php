@@ -129,7 +129,7 @@ Class Departamento {
     function setCodDepartamento($T02_CodDepartamento) {
         $this->T02_CodDepartamento = $T02_CodDepartamento;
     }
-
+    
     /**
      * Función setDescDepartamento
      * 
@@ -166,7 +166,7 @@ Class Departamento {
     /**
      * Función buscaDepartamentoPorDescripcion
      * 
-     * Última revisión 06/02/2019
+     * Última revisión 14/05/2019
      * Extrae toda la información de todos los departamentos coincidentes
      * 
      * @author Laura Fernandez
@@ -190,7 +190,7 @@ Class Departamento {
     /**
      * Función buscaDepartamentoPorCodigo
      * 
-     * Última revisión 06/02/2019
+     * Última revisión 14/05/2019
      * Extrae toda la información del departamento en base al código proporcionado
      * 
      * @author Laura Fernandez
