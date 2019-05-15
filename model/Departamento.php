@@ -46,7 +46,7 @@ Class Departamento {
     /**
      * Función constructor
      * 
-     * Última revisión 04/02/2019
+     * Última revisión 14/05/2019
      * Crea el objeto departamento con los parámetros recibidos
      * 
      * @author Laura Fernandez
@@ -198,22 +198,13 @@ Class Departamento {
      * @return 
      */
     public static function buscaDepartamentosPorCodigo($codigo) {
-        $aDepartamentos = [];
-        //Usamos buscaDepartamentosPorDescripcion de DepartamentosPDO
-        $departamentos = DepartamentoPDO::buscaDepartamentosPorCodigo($codigo);
-        foreach ($departamentos as $row) {
-            //Guardamos los datos de los departamentos encontrados
-            $departamento = new Departamento($row[T02_CodDepartamento], $row[T02_DescDepartamento], $row[T02_FechaCreacionDepartamento], $row[T02_VolumenDeNegocio], $row[T02_FechaBajaDepartamento]);
-            //Se los añadimos a este array creado anteriormente
-            array_push($aDepartamentos, $departamento);
-        }
-        return $aDepartamentos;
+       
     }
 
     /**
      * Función altaDepartamento
      * 
-     * Última revisión 04/02/2019
+     * Última revisión 14/05/2019
      * registra un nuevo departamento en la aplicación
      * 
      * @author Laura Fernandez
@@ -233,20 +224,20 @@ Class Departamento {
     /**
      * Función validaCodNoExiste
      * 
-     * Última revisión 04/02/2019
+     * Última revisión 14/05/2019
      * @param 
      * 
      * @author Laura Fernandez
      * @return 
      */
     public static function validaCodNoExiste() {
-        return DepartamentoPDO::validaCodNoExiste($CodDepartamento);
+      
     }
 
     /**
      * Función bajaFisicaDepartamento
      * 
-     * Última revisión 04/02/2019
+     * Última revisión 14/05/2019
      * Borra un departamento de la aplicación
      * 
      * @author Laura Fernandez
@@ -254,11 +245,7 @@ Class Departamento {
      * @return 
      */
     public function bajaFisicaDepartamento($codigo) {
-        $borrado = false;
-        if (DepartamentoPDO::bajaFisicaDepartamento($codigo)) {
-            $borrado = true;
-        }
-        return $borrado;
+       
     }
 
     /**
@@ -278,7 +265,7 @@ Class Departamento {
     /**
      * Función modificarDepartamento
      * 
-     * Última revisión 04/02/2019
+     * Última revisión 14/05/2019
      * Modifica un departamento de la aplicación
      * 
      * @author Laura Fernandez
@@ -287,7 +274,7 @@ Class Departamento {
      * @return 
      */
     public function modificaDepartamento($codigo, $descDepartamento, $volumenNegocio) {
-        return DepartamentoPDO::modificaDepartamento($codigo, $descDepartamento, $volumenNegocio);
+        
     }
 
     /**

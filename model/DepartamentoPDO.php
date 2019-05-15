@@ -127,13 +127,7 @@
         * @return 
         */
         public static function bajaFisicaDepartamento($CodDepartamento) {
-			$borrado = false;
-            $sql = "DELETE FROM T02_Departamentos WHERE T02_CodDepartamento=?";
-            $sql = DBPDO::ejecutaConsulta($sql, [$CodDepartamento]);
-            if ($sql->rowCount() != 0) {
-                $borrado = true;
-            }
-            return $borrado;
+			
         }
         /**
         * Función bajaLogicaDepartamento
@@ -162,13 +156,7 @@
         * @return 
         */
         public static function modificaDepartamento($CodDepartamento, $descDepartamento,$volumenNegocio) {
-			 $departamento = false;
-            $sql = "UPDATE T02_Departamentos SET T02_DescDepartamento=?,T02_VolumenDeNegocio=? WHERE T02_CodDepartamento=?";
-            $consulta = DBPDO::ejecutaConsulta($sql, [$descDepartamento,$volumenNegocio, $CodDepartamento]);
-            if ($consulta->rowCount()!=0) {
-                $departamento = true;
-            }
-            return $departamento;
+			 
         }
         /**
         * Función rehabilitarDepartamento
@@ -194,13 +182,7 @@
         * @return 
         */
         public static function validaCodNoExiste() {
-           $existe = false;
-            $sql = "SELECT * FROM T02_Departamentos WHERE T02_CodDepartamento=?";
-            $sql = DBPDO::ejecutaConsulta($sql, [$CodDepartamento]);
-            if ($sql->rowCount() != 0) {
-                $existe = true;
-            }
-            return $existe; 
+           
         }
     }
 
