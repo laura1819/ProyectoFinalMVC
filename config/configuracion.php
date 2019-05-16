@@ -7,14 +7,12 @@
  * @modifiedDate 15/04/2019
  * @version 1.5
  */
-
-
 // configuracion de la base de datos
 require_once 'config/configuracionDB.php';
 // configuracion de validacion de formularios
 require_once 'core/validacionFormularios.php';
 // clases de la aplicacion
-require_once 'model/Usuario.php'; 
+require_once 'model/Usuario.php';
 // clase del rest
 require_once 'model/Rest.php';
 // clase para los departamentos
@@ -34,7 +32,13 @@ $controladores = [
     'rest' => 'controller/cRest.php',
     'mtoDepartamentos' => 'controller/cMtoDepartamentos.php',
     'altaDepartamentos' => 'controller/caltaDepartamentos.php',
-   
+    'editarDepartamentos' => 'controller/ceditarDepartamentos.php',
+    'verDepartamento' => 'controller/cverDepartamentos.php',
+    'borrarDepartamento' => 'controller/cborrarDepartamentos.php',
+    'editarDepartamentos' => 'controller/ceditarDepartamentos.php',    
+    'verDepartamento' => 'controller/cverDepartamentos.php',
+    'rehabilitarDepartamento' => 'controller/crehabilitarDepartamentos.php',
+    'bajaDepartamento' => 'controller/cbajaDepartamentos.php', 
 ];
 
 $vistas = [
@@ -50,6 +54,12 @@ $vistas = [
     'rest' => 'view/vRest.php',
     'mtoDepartamentos' => 'view/vMtoDepartamentos.php',
     'altaDepartamentos' => 'view/valtaDepartamentos.php',
-    
+    'editarDepartamentos' => 'view/veditarDepartamentos.php',
+    'verDepartamento' => 'view/vverDepartamentos.php',
+    'borrarDepartamento' => 'view/vborrarDepartamentos.php',
+    'editarDepartamentos' => 'view/veditarDepartamentos.php',
+    'verDepartamento' => 'view/vverDepartamentos.php',
+    'rehabilitarDepartamento' => 'view/vrehabilitarDepartamentos.php',
+    'bajaDepartamento' => 'view/vbajaDepartamentos.php', 
 ];
 ?>

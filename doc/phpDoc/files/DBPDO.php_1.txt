@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * Archivo DBPDO.php
+ * 
+ * Esta clase ejecuta las consultas con la base de datos
+ * 
+ * @package modelo
+ */
+
+/**
+ * Class DBPDO
+ */
+
+
+Class DBPDO {
+	 /**
+     * ejecutarConsulta
+     * 
+     * Última revisión 09/02/2019
+     * Este metodo ESTATICO establece la conexion con la base de datos y ejecuta las consultas
+     * 
+     * @author Laura Fernandez
+     * @param string $sql la sentencia sql
+     * @param string $parametros parametros para la ejecucion
+     * @return $resultSet donde cojemos el resultado de la consulta
+     */
+
+    public static function ejecutarConsulta($sql, $parametros) {
+        try {
+            $miDB = new PDO(DNS, USER, PASSWORD); // conectamos con la base de datos
+            $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // establecemos los parametros para la conexion
+            $resultSet = $miDB->prepare($sql); // preparamos la consulta
+            $resultSet->execute($parametros);  // ejecutamos la consulta
+        } catch (PDOException $error) { // si salta algun error
+            $resultSet = null; // si el resultado de la consulta es null
+            echo $error->getMessage(); // sacamos el mensaje de error
+            echo $error->getCode();  //sacamos el codigo de error
+            unset($miDB);  // destruimos la conexion con la base de datos
+        }
+        return $resultSet; // devolvemos la consulta
+    }
+}
+
+?>

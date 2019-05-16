@@ -11,7 +11,9 @@
         <a class="navbar-brand js-scroll-trigger" href="#page-top">Mantenimiento Departamentos</a>
 
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <input type="submit" name="Añadir" value="Añadir" class="btn btn-success">
             <input type="submit" name="Volver" value="Volver" class="btn btn-danger">
+            
 
             </div>
             </nav>
@@ -25,8 +27,8 @@
                 <div class="row">
                     <form class="buscar" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" >
 
-                        <div class='departa'>
-                            Buscar por descripcion:
+                        <div style="border-width: 4px; border-style: groove; border-color: #2C3E50;  ">
+                            Buscar departamento por descripcion:
                             <input type="text" name="nombre" value="<?php echo $_REQUEST['nombre']; ?>">                               
                             <input type="submit" name="Buscar" value="Buscar" class="btn btn-success">
                             <div class="buscarPosicion">
@@ -41,22 +43,14 @@
                                 }
                                 ?>>Baja
                                 <input type="radio" name="opcionesBusqueda" id="Todos" value="Todos" <?php
-                                       if ($_REQUEST['opcionesBusqueda'] == "Todos" || $_REQUEST['opcionesBusqueda'] == null) {
-                                           echo "checked";
-                                       }
+                                if ($_REQUEST['opcionesBusqueda'] == "Todos" || $_REQUEST['opcionesBusqueda'] == null) {
+                                    echo "checked";
+                                }
                                 ?>>Todos
                             </div>
 
-                        </div>
-                        <div class="ini">
-
-
-                            <input type="submit" name="Añadir" value="Añadir" class="btn btn-success">
-
-
-
-
-                        </div>
+                        </div><br>
+                       
                     </form>    
 
                     <table class="table">
@@ -68,17 +62,17 @@
                                 <th><b>Acciones</b></th>
                             </tr>
                         </thead>
-<?php
-for ($i = 0; $i < count($departamentos); $i++) {
-    if ($departamentos[$i]->getFechaBajaDepartamento() == '0001-01-01') {
-        ?>
+                        <?php
+                        for ($i = 0; $i < count($departamentos); $i++) {
+                            if ($departamentos[$i]->getFechaBajaDepartamento() == '0001-01-01') {
+                                ?>
 
 
                                 <tr style="background-color: #8BBD86;">        
                                     <td><?php echo $departamentos[$i]->getCodDepartamento(); ?></td>
                                     <td><?php echo $departamentos[$i]->getDescDepartamento(); ?></td>
                                     <td><?php echo $departamentos[$i]->getVolumenDeNegocio() . " €"; ?></td>
-        <?php $departamentos[$i]->getFechaBajaDepartamento(); ?>
+                                    <?php $departamentos[$i]->getFechaBajaDepartamento(); ?>
 
                                     <td class="acciones">
                                         <form method="post">
@@ -110,13 +104,13 @@ for ($i = 0; $i < count($departamentos); $i++) {
                                     </td>      
 
                                 </tr>															
-                                <?php } else {
-                                    ?>
+                            <?php } else {
+                                ?>
                                 <tr style="background-color:#BD8686;">        
                                     <td><?php echo $departamentos[$i]->getCodDepartamento(); ?></td>
                                     <td><?php echo $departamentos[$i]->getDescDepartamento(); ?></td>
                                     <td><?php echo $departamentos[$i]->getVolumenDeNegocio() . " €"; ?></td>
-        <?php $departamentos[$i]->getFechaBajaDepartamento(); ?>
+                                    <?php $departamentos[$i]->getFechaBajaDepartamento(); ?>
 
                                     <td class="acciones">
                                         <form method="post">
@@ -148,10 +142,10 @@ for ($i = 0; $i < count($departamentos); $i++) {
                                     </td> 
 
 
-        <?php
-    }
-}
-?>
+                                    <?php
+                                }
+                            }
+                            ?>
                     </table>
                 </div>
             </div>

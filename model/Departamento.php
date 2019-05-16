@@ -46,7 +46,7 @@ Class Departamento {
     /**
      * Función constructor
      * 
-     * Última revisión 14/05/2019
+     * Última revisión 04/02/2019
      * Crea el objeto departamento con los parámetros recibidos
      * 
      * @author Laura Fernandez
@@ -129,7 +129,7 @@ Class Departamento {
     function setCodDepartamento($T02_CodDepartamento) {
         $this->T02_CodDepartamento = $T02_CodDepartamento;
     }
-    
+
     /**
      * Función setDescDepartamento
      * 
@@ -166,7 +166,7 @@ Class Departamento {
     /**
      * Función buscaDepartamentoPorDescripcion
      * 
-     * Última revisión 14/05/2019
+     * Última revisión 06/02/2019
      * Extrae toda la información de todos los departamentos coincidentes
      * 
      * @author Laura Fernandez
@@ -190,7 +190,7 @@ Class Departamento {
     /**
      * Función buscaDepartamentoPorCodigo
      * 
-     * Última revisión 14/05/2019
+     * Última revisión 06/02/2019
      * Extrae toda la información del departamento en base al código proporcionado
      * 
      * @author Laura Fernandez
@@ -198,13 +198,22 @@ Class Departamento {
      * @return 
      */
     public static function buscaDepartamentosPorCodigo($codigo) {
-       
+        $aDepartamentos = [];
+        //Usamos buscaDepartamentosPorDescripcion de DepartamentosPDO
+        $departamentos = DepartamentoPDO::buscaDepartamentosPorCodigo($codigo);
+        foreach ($departamentos as $row) {
+            //Guardamos los datos de los departamentos encontrados
+            $departamento = new Departamento($row[T02_CodDepartamento], $row[T02_DescDepartamento], $row[T02_FechaCreacionDepartamento], $row[T02_VolumenDeNegocio], $row[T02_FechaBajaDepartamento]);
+            //Se los añadimos a este array creado anteriormente
+            array_push($aDepartamentos, $departamento);
+        }
+        return $aDepartamentos;
     }
 
     /**
      * Función altaDepartamento
      * 
-     * Última revisión 14/05/2019
+     * Última revisión 04/02/2019
      * registra un nuevo departamento en la aplicación
      * 
      * @author Laura Fernandez
@@ -224,20 +233,20 @@ Class Departamento {
     /**
      * Función validaCodNoExiste
      * 
-     * Última revisión 14/05/2019
+     * Última revisión 04/02/2019
      * @param 
      * 
      * @author Laura Fernandez
      * @return 
      */
     public static function validaCodNoExiste() {
-      
+        return DepartamentoPDO::validaCodNoExiste($CodDepartamento);
     }
 
     /**
      * Función bajaFisicaDepartamento
      * 
-     * Última revisión 14/05/2019
+     * Última revisión 04/02/2019
      * Borra un departamento de la aplicación
      * 
      * @author Laura Fernandez
@@ -245,7 +254,11 @@ Class Departamento {
      * @return 
      */
     public function bajaFisicaDepartamento($codigo) {
-       
+        $borrado = false;
+        if (DepartamentoPDO::bajaFisicaDepartamento($codigo)) {
+            $borrado = true;
+        }
+        return $borrado;
     }
 
     /**
@@ -258,14 +271,14 @@ Class Departamento {
      * @param 
      * @return 
      */
-    public function bajaLogicaDepartamento() {
-        
+    public function bajaLogicaDepartamento($codigo,$T02_FechaBajaDepartamento) {
+        return DepartamentoPDO::bajaLogicaDepartamento($codigo,$T02_FechaBajaDepartamento);
     }
 
     /**
      * Función modificarDepartamento
      * 
-     * Última revisión 14/05/2019
+     * Última revisión 04/02/2019
      * Modifica un departamento de la aplicación
      * 
      * @author Laura Fernandez
@@ -274,7 +287,7 @@ Class Departamento {
      * @return 
      */
     public function modificaDepartamento($codigo, $descDepartamento, $volumenNegocio) {
-        
+        return DepartamentoPDO::modificaDepartamento($codigo, $descDepartamento, $volumenNegocio);
     }
 
     /**
@@ -288,9 +301,17 @@ Class Departamento {
      * @param 
      * @return 
      */
-    public function rehabilitaDepartamento() {
-        
-    }
+    public function rehabilitaDepartamento($codigo) {
+         $rehabilitado = false;
+            if(DepartamentoPDO::rehabilitaDepartamento($codigo)){
+                $rehabilitado=true;
+            }
+            return $rehabilitado;            
+        }
+    
+        public static function contarDepartamentoPorDescripcion($nombre,$opcionesBusqueda){
+            return DepartamentoPDO::contarDepartamentoPorDescripcion($nombre, $opcionesBusqueda);            
+        }
 
 }
 

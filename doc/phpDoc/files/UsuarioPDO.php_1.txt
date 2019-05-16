@@ -1,0 +1,172 @@
+<?php
+/**
+ * Archivo Usuario.php
+ *
+ * Crea los usuarios o modifica algunos de sus parametros
+ * 
+ * @package modelo
+ */
+require_once "DBPDO.php";
+require_once "UsuarioDB.php";
+/**
+ * Class Usuario
+ * 
+ * clase usuarioPDO
+ * 
+ * @author Laura Fernandez
+ */
+class UsuarioPDO implements UsuarioDB {
+   
+    /**
+     * Función validarUsuario
+     * 
+     * Última revisión 29/01/2019
+     * Se busca el usuario y password en la DB para validar su existencia
+     * 
+     * @author Laura Fernandez
+     * @param string $CodUsuario código del usuario
+     * @param string $Password contraseña propia del usuario
+     * @return array $aUsuario array que incluye los datos del usuario
+     */
+    public static function validarUsuario($CodUsuario, $Password) {
+        $consulta = "SELECT * FROM T01_Usuarios WHERE T01_CodUsuario=? AND T01_Password=SHA2(?, 256)"; 
+        $aUsuario = []; 
+        $consulta = DBPDO::ejecutarConsulta($consulta, [$CodUsuario, $Password]); 
+        if ($consulta->rowCount() == 1) {
+            $resultSet = $consulta->fetchObject(); 
+            $aUsuario['CodUsuario'] = $resultSet->T01_CodUsuario;
+            $aUsuario['Password'] = $resultSet->T01_Password;
+            $aUsuario['DescUsuario'] = $resultSet->T01_DescUsuario;
+            $aUsuario['NumAccesos'] = $resultSet->T01_NumAccesos;
+            $aUsuario['FechaHoraUltimaConexion'] = $resultSet->T01_FechaHoraUltimaConexion;
+            $aUsuario['Perfil'] = $resultSet->T01_Perfil;
+        }
+        return $aUsuario;  
+    }
+
+    /**
+     * Función altaUsuario
+     * 
+     * Última revisión 01/02/2019
+     * Se inserta un registro en la DB correspondiente a un nuevo usuario
+     * 
+     * @author Laura Fernandez
+     * @param string $CodUsuario código del usuario
+     * @param string $Password contraseña propia del usuario
+     * @param string $DescUsuario descripción del usuario
+     * @return $aUsuario si es correcto o no
+     */
+    public static function altaUsuario($CodUsuario, $Password, $DescUsuario) {
+        $usuario = false;
+        $consulta = "INSERT INTO T01_Usuarios(T01_CodUsuario,T01_Password,T01_DescUsuario,T01_Perfil) VALUES (?,SHA2(?, 256),?,'Usuario')";
+        $consulta = DBPDO::ejecutarConsulta($consulta, [$CodUsuario, $Password, $DescUsuario]);
+        if ($consulta->rowCount() != 0) {
+            $usuario = true;
+        }
+        return $usuario;
+    }
+
+    /**
+     * Función modificarUsuario
+     * 
+     * Última revisión 02/02/2019
+     * Se actualizan los registros en la DB actualizando a su vez los datos del usuario
+     * 
+     * @author Laura Fernandez
+     * @param string $CodUsuario código de usuario
+     * @param string $DescUsuario descripción del usuario
+     * @return boolean dependiendo si todo es correcto o no
+     */
+    public static function modificarUsuario($CodUsuario,$DescUsuario) {
+        $usuario = false;
+        $consulta = "UPDATE T01_Usuarios SET T01_DescUsuario=? WHERE T01_CodUsuario=?";
+        $consulta = DBPDO::ejecutarConsulta($consulta, [$DescUsuario, $CodUsuario]);
+        if ($consulta->rowCount() != 0) {
+            $usuario = true;
+        }
+        return $usuario;
+    }
+
+    /**
+     * Función borrarUsuario
+     * 
+     * Última revisión 03/02/2019
+     * Se borra el registro en la DB borrando a su vez el usuario
+     * 
+     * @author Laura Fernandez
+     * @param string $CodUsuario código del usuario
+     * @return boolean dependiendo de si todo es correcto o no
+     */
+    public static function borrarUsuario($CodUsuario) {
+        $borrado = false;
+        $consulta = "DELETE FROM T01_Usuarios WHERE T01_CodUsuario=?";
+        $consulta = DBPDO::ejecutarConsulta($consulta, [$CodUsuario]);
+        if ($consulta->rowCount() != 0) {
+            $borrado = true;
+        }
+        return $borrado;
+    }
+
+    /**
+     * Función registrarUltimaConexion
+     * 
+     * Última revisión 02/02/2019
+     * Actualiza en la DB el número de accesos y la fecha y hora del último login
+     * 
+     * @author Laura Fernandez
+     * @param string $CodUsuario código del usuario
+     * @return boolean dependiendo de si todo es correcto o no
+     */
+    public static function registrarUltimaConexion($CodUsuario) {
+        $guardado = false;
+        $consulta = "UPDATE T01_Usuarios SET T01_NumAccesos=T01_NumAccesos+1,T01_FechaHoraUltimaConexion=? WHERE T01_CodUsuario=?";
+        $fecha = new DateTime();
+        
+        $consulta = DBPDO::ejecutarConsulta($consulta, [$fecha->getTimestamp(), $CodUsuario]); 
+
+        if ($consulta->rowCount() != 0) { 
+            $guardado = true;
+        }
+        return $guardado;
+    }
+
+	/**
+     * Función validarCodNoExiste
+     * 
+     * Última revisión 04/02/2019
+     * Comprueba en la DB si existen registros para el código de usuario correspondiente
+     * 
+     * @author Laura Fernandez
+     * @param string $CodUsuario código del usuario
+     * @return boolean dependiendo de si todo es correcto o no
+     */
+    public static function validarCodNoExiste($CodUsuario) {
+        $existe = false;
+        $consulta = "SELECT * FROM T01_Usuarios WHERE T01_CodUsuario=?";
+        $consulta = DBPDO::ejecutarConsulta($consulta, [$CodUsuario]);
+        if ($consulta->rowCount() != 0) {
+            $existe = true;
+        }
+        return $existe;
+    }
+
+    /**
+    * Cambiar la contraseña 
+    * 
+    * Función para cambiar la contraseña del usuario
+    * @param $CodUsuario codigo del usuario
+    * @param $password contraseña modificada
+    */
+    public static function cambiarContraseña($CodUsuario,$password){
+        $cambiado = false;
+        $sql = "UPDATE T01_Usuarios SET T01_Password=? WHERE T01_CodUsuario=?";
+        $sql = DBPDO::ejecutarConsulta($sql, [$password,$CodUsuario]);
+        if ($sql->rowCount() != 0) {
+            $cambiado = true;
+        }
+        return $cambiado;
+    }
+   
+}
+
+?>

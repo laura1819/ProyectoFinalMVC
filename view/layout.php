@@ -76,7 +76,7 @@ if (isset($_SESSION['pagina'])) {
                     <div class="col-md-4">
                         <h4 class="text-uppercase mb-4">Documentacion</h4>
                         <p class="lead mb-0">
-                            <a href="#">PhpDoc</a></p>
+                            <a href="doc/phpDoc/index.html" target="blank">PhpDoc</a></p>
                          <p class="lead mb-0">
                              <a href="doc/CatalogoDeRequisitos.pdf" target="blank">Catalogo de Requisitos</a></p>
                     </div>

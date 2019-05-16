@@ -1,0 +1,81 @@
+<?php
+
+/**
+ * Archivo UsuarioDB.php
+ * 
+ * Tiene los metodos que estan en UsuarioPDO
+ * 
+ * @author Laura Fernandez
+ * @package modelo
+ */
+
+/**
+ * Interface UsuarioDB
+ */
+
+
+interface UsuarioDB {
+	
+    /**
+     * Función validarUsuario
+     * 
+     * Implementa la función validarUsuario
+     * 
+     * @author Laura Fernandez
+     * @param string $codUsuario pasa el codigo del usuario
+     * @param string $password pasa la contraseña del usuario
+     */
+	
+    public static function validarUsuario($codUsuario, $password);
+	
+    /**
+     * Función altaUsuario
+     * 
+     * Implementa la función altaUsuario
+     * 
+     * @author Laura Fernandez
+     * @param string $codUsuario pasa el codigo del usuario
+     * @param string $password pasa la contraseña del usuario
+     * @param string $descUsuario pasa la descripcion del usuario
+     */
+    public static function altaUsuario($codUsuario, $password, $descUsuario);
+    /**
+     * Función modificarUsuario
+     * 
+     * Implementa la función modificarUsuario
+     * 
+     * @author Laura Fernandez
+     * @param string $codUsuario pasa el código del usuario
+     * @param string $descusuario pasa la descripción del usuario
+     */
+    public static function modificarUsuario($codUsuario, $descusuario);
+   
+    /**
+     * Función borrarUsuario
+     * 
+     * Implementa la función borrarUsuario
+     * 
+     * @author Laura Fernandez
+     * @param string $codUsuario pasa el código del usuario
+     */
+    public static function borrarUsuario($codUsuario);
+    /**
+     * Función registrarUltimaConexion
+     * 
+     * Implementa la función registrarUltimaConexion
+     * 
+     * @author Laura Fernandez
+     * @param string $codUsuario pasa el código del usuario
+     */
+    public static function registrarultimaConexion($codUsuario);
+    /**
+     * Función validarCodNoExiste
+     * 
+     * Implementa la función validarCodNoExiste
+     * 
+     * @author Laura Fernandez
+     * @param string $codusuario pasa el código del usuario
+     */
+    public static function validarCodNoExiste($codusuario); 
+}
+

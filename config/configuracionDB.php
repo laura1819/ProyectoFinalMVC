@@ -6,7 +6,8 @@
  * @modifiedDate 15/04/2019
  * @version 1.5
  */
-define('IPDB', 'mysql:host=192.168.20.19;dbname=DAW210DBProyectoAplicacion1819');
+define('IPDB', 'mysql:host=127.0.0.1;dbname=DAW210DBProyectoAplicacion1819');
 define('PASS', 'paso');
-define('USUARIO', 'usuarioDAW210DBPAp1819');
+define('USUARIO', 'usuarioDAW210DBDepartamentos');
+        //. 'usuarioDAW210DBPAp1819');
 ?>

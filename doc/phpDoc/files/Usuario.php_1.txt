@@ -1,0 +1,293 @@
+<?php
+/**
+ * Archivo Usuario.php
+ *
+ * Crea los usuarios o modifica algunos de sus parametros
+ * 
+ * @package modelo
+ */
+require_once 'UsuarioPDO.php';
+/**
+ * Class Usuario
+ * 
+ * Esta clase crea, borra, modifica y valida los usuarios
+ * 
+ * @author Laura Fernandez
+ */
+Class Usuario {
+	/**
+     * @var string $codUsuario código del usuario 
+     */
+    private $CodUsuario;
+	/**
+     * @var string $password contraseña propia del usuario
+     */
+    private $password;
+	/**
+     * @var string $descUsuario descripción del usuario 
+     */
+    private $descUsuario;
+	/**
+     * @var integer $numAccesos número de veces que se ha iniciado sesión
+     */
+    private $numAccesos;
+	/**
+     * @var integer $fechaHoraUltimaConexion registro del último inicio de sesión
+     */
+    private $fechaHoraUltimaConexion;
+	/**
+     * @var string $perfil tipo de usuario 
+     */
+    private $perfil;   
+	
+	
+	
+	/**
+     * Función constructor
+     * 
+     * Última revisión 09/05/2019
+     * Crea el objeto usuario con los parámetros recibidos
+     * 
+     * @author Laura Fernandez
+     * @param string $CodUsuario pasa el código del usuario
+     * @param string $password pasa la contraseña propia del usuario
+     * @param string $descUsuario pasa la descripción del usuario
+     * @param integer $numAccesos pasa el número de veces que se ha iniciado sesión
+     * @param integer $fechaHoraUltimaConexion guarda registro del último inicio de sesión
+     * @param string $perfil pasa eltipo de usuario
+     */
+    function __construct($CodUsuario, $password, $descUsuario, $numAccesos, $fechaHoraUltimaConexion, $perfil) {
+        $this->codUsuario = $CodUsuario;
+        $this->password = $password;
+        $this->descUsuario = $descUsuario;
+        $this->numAccesos = $numAccesos;
+        $this->fechaHoraUltimaConexion = $fechaHoraUltimaConexion;
+        $this->perfil = $perfil;
+    }
+	/**
+     * Función getCodUsuario
+     * 
+     * Devuelve el código de usuario
+     * 
+     * @return string
+     */
+    function getCodUsuario() {
+        return $this->codUsuario;
+    }
+	/**
+     * Función setCodUsuario
+     * 
+     * Modifica el código de usuario
+     * 
+     * @param string $CodUsuario código del usuario
+     */
+    function setCodUsuario($CodUsuario) {
+        $this->codUsuario = $CodUsuario;
+    }
+	/**
+     * Función getPassword
+     * 
+     * Devuelve el password del usuario
+     * 
+     * @return string
+     */
+    function getPassword() {
+        return $this->password;
+    }
+	/**
+     * Función setPassword
+     * 
+     * Modifica la contraseña del usuario
+     * 
+     * @param string $password contraseña propia del usuario
+     */
+    function setPassword($password) {
+        $this->password = $password;
+    }
+	/**
+     * Función getDescUsuario
+     * 
+     * Devuelve la descripción del usuario
+     * 
+     * @return string
+     */
+    function getDescUsuario() {
+        return $this->descUsuario;
+    }
+	/**
+     * Función setDescUsuario
+     * 
+     * Modifica la descripción del usuario
+     * 
+     * @param string $descUsuario descripción del usuario
+     */
+    function setDescUsuario($descUsuario) {
+        $this->descUsuario = $descUsuario;
+    }
+	/**
+     * Función getNumAccesos
+     * 
+     * Devuelve el número de veces que ha iniciado sesión
+     * 
+     * @return integer
+     */
+    function getNumAccesos() {
+        return $this->numAccesos;
+    }
+	/**
+     * Función setNumAccesos
+     * 
+     * Modifica el número de veces que se ha iniciado sesión
+     * 
+     * @param integer $numAccesos número de veces que se ha iniciado sesión
+     */
+    function setNumAccesos($numAccesos) {
+        $this->numAccesos = $numAccesos;
+    }
+	/**
+     * Función getFechaHoraUltimaConexion
+     * 
+     * Devuelve la última vez que se ha iniciado sesión
+     * 
+     * @return integer
+     */
+    function getFechaHoraUltimaConexion() {
+        return $this->fechaHoraUltimaConexion;
+    }
+	/**
+     * Función setFechaHoraUltimaConexion
+     * 
+     * Modifica el registro del último inicio de sesión
+     * 
+     * @param integer $fechaHoraUltimaConexion registro del último inicio de sesión
+     */
+    function setFechaHoraUltimaConexion($fechaHoraUltimaConexion) {
+        $this->fechaHoraUltimaConexion = $fechaHoraUltimaConexion;
+    }
+	/**
+     * Función getPerfil
+     * 
+     * Devuelve el tipo de usuario
+     * 
+     * @return string
+     */
+    function getPerfil() {
+        return $this->perfil;
+    }
+	/**
+     * Función setPerfil
+     * 
+     * Modifica el tipo de usuario
+     * 
+     * @param integer $perfil tipo de usuario
+     */
+    function setPerfil($perfil) {
+        $this->perfil = $perfil;
+    }
+    /**
+     * Función validarUsuario
+     * 
+     * Última revisión 09/02/2019
+     * Valida las credenciales del usuario
+     * 
+     * @author Laura Fernandez
+     * @param string $CodUsuario pasa el código del usuario
+     * @param string $password pasa la contraseña del usuario
+     * @return \Usuario $usuario objeto usuario de la case usuario con sus atributos
+     */ 
+    public static function validarUsuario($CodUsuario, $password) {
+        $Usuario = null; // declaramos e inicializamos la variable
+        $aUsuario = UsuarioPDO::validarUsuario($CodUsuario, $password); //lo pasamos a validarusuario
+        if (!empty($aUsuario)) {// comprobamos que el array no este vacio
+            $Usuario = new Usuario($CodUsuario, $password, $aUsuario['DescUsuario'], $aUsuario['NumAccesos'], $aUsuario['FechaHoraUltimaConexion'], $aUsuario['Perfil']);
+        }
+        return $Usuario; // devolvemos el usuario
+    }
+	/**
+     * Función altaUsuario
+     * 
+     * Última revisión 09/02/2019
+     * Registra un nuevo usuario en la aplicación
+     * 
+     * @author Laura Fernandez
+     * @param string $CodUsuario pasa el código del usuario
+     * @param string $Password pasa la contraseña propia del usuario
+     * @param string $DescUsuario pasa la descripción del usuario
+     * @return \Usuario $usuario objeto usuario de la case usuario con sus atributos
+     */
+    public static function altaUsuario($CodUsuario, $Password, $DescUsuario) {
+
+        if (UsuarioPDO::altaUsuario($CodUsuario, $Password, $DescUsuario)) {
+            $Usuario = new Usuario($CodUsuario, $Password, $DescUsuario, 0, null, 'usuario');
+        }
+        return $Usuario;
+    }
+	/**
+     * Función modificarUsuario
+     * 
+     * Última revisión 09/02/2019
+     * Módifica el usuario de la aplicación
+     * 
+     * @author Laura Fernandez
+     * @param string $DescUsuario pasa la descripción del usuario
+     * @return boolean si es correcto o no
+     */
+    public function modificarUsuario($DescUsuario) {
+        $this->setDescUsuario($DescUsuario);
+        return UsuarioPDO::modificarUsuario($this->getCodUsuario(), $DescUsuario);
+    }
+	/**
+     * Función borrarUsuario
+     * 
+     * Última revisión 09/02/2019
+     * Borra un usuario de la aplicación
+     * 
+	 * @author Laura Fernandez
+     * @param 
+     * @return boolean si es correcto o no
+     */
+    public function borrarUsuario() {
+        return UsuarioPDO::borrarUsuario($this->getCodUsuario());
+    }
+	/**
+     * Función registrarUltimaConexion
+     * 
+     * Última revisión 09/02/2019
+     * Registra la marca de tiempo del último inicio de sesión del usuario
+     * 
+     * @author Laura Fernandez
+     * @param string $CodUsuario pasa elcódigo del usuario
+     * @return boolean si es correcto o no
+     */
+    public function registrarUltimaConexion($CodUsuario) {
+        return UsuarioPDO::registrarUltimaConexion($CodUsuario);
+    }
+	/**
+     * Función validarCodNoExiste
+     * 
+     * Última revisión 06/02/2019
+     * Comprueba si existe algún usuario con el código recibido
+     * 
+     * @author Laura Fernandez
+     * @param string $CodUsuario pasa el código del usuario
+     * @return boolean si existe o no el usuario
+     */
+    public static function validarCodNoExiste($CodUsuario) {
+        return UsuarioPDO::validarCodNoExiste($CodUsuario);
+    }
+	
+	/**
+    * Cambiar la contraseña 
+    * 
+    * Función para cambiar la contraseña del usuario
+    * @param $CodUsuario código
+    * @param $password contraseña modificada
+    */
+    public static function cambiarContraseña($CodUsuario,$password){
+       return UsuarioPDO::cambiarContraseña($CodUsuario, $password);
+    }
+    
+   
+}
+
+?>
