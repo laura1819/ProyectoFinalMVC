@@ -77,7 +77,7 @@
                                     <div class="col-md-4">
                                         <h3 class="text-center text-uppercase text-secondary mb-0">ServiciosWeb</h3>
                                         <input type="submit" name="wip" value="SOAP" class="btn btn-lg btn-block btn-success">
-                                        <input type="submit" name="wip" value="REST" class="btn btn-lg btn-block btn-success">
+                                        <input type="submit" name="rest" value="REST" class="btn btn-lg btn-block btn-success">
 
                                     </div>
 
@@ -103,9 +103,9 @@
                                     <p class="lead"><?php echo '<b>Velocidad media del viento: </b>' . $_SESSION['aemet']['vv'] . 'm/s' ?></p>
                       
                                 </div>                             
-                            </div> 
+                            </div> <br><br>
 
-
+                            <h6>API Rest de la AEMET para mostrar el tiempo en la localidad de Benavente, web de referencia de esta API https://opendata.aemet.es/opendata/api</h6>
 
                         </section>
 

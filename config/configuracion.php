@@ -39,6 +39,7 @@ $controladores = [
     'verDepartamento' => 'controller/cverDepartamentos.php',
     'rehabilitarDepartamento' => 'controller/crehabilitarDepartamentos.php',
     'bajaDepartamento' => 'controller/cbajaDepartamentos.php', 
+    'rest' => 'controller/cRest.php'
 ];
 
 $vistas = [
@@ -61,5 +62,6 @@ $vistas = [
     'verDepartamento' => 'view/vverDepartamentos.php',
     'rehabilitarDepartamento' => 'view/vrehabilitarDepartamentos.php',
     'bajaDepartamento' => 'view/vbajaDepartamentos.php', 
+    'rest' => 'view/vRest.php'
 ];
 ?>

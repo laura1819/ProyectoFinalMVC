@@ -98,7 +98,7 @@
 
 
 
-                                            <button type="submit" name="rehabilitar<?php echo $i; ?>"><i class="fas fa-angle-double-up" <?php if ($departamentos[$i]->getFechaBajaDepartamento() == '0001-01-01') { ?>style="display:none;"<?php } ?>></button></i>
+                                           
 
                                         </form>
                                     </td>      
@@ -116,9 +116,7 @@
                                         <form method="post">
 
 
-                                            <button type="submit" name="editar<?php echo $i; ?>">
-                                                <i class="fas fa-edit" <?php if ($departamentos[$i]->getFechaBajaDepartamento() != '0001-01-01') { ?>style="display:none;"<?php } ?>></i>
-                                            </button>
+                                            
 
 
 
@@ -127,13 +125,6 @@
 
 
                                             <button type="submit" name="borrar<?php echo $i; ?>"><i class="fas fa-trash-alt"></i></button>
-
-
-
-
-                                            <button type="submit" name="baja<?php echo $i; ?>"><i class="fas fa-angle-double-down" <?php if ($departamentos[$i]->getFechaBajaDepartamento() != '0001-01-01') { ?>style="display:none;"<?php } ?>></button></i>
-
-
 
 
                                             <button type="submit" name="rehabilitar<?php echo $i; ?>"><i class="fas fa-angle-double-up" <?php if ($departamentos[$i]->getFechaBajaDepartamento() == '0001-01-01') { ?>style="display:none;"<?php } ?>></button></i>

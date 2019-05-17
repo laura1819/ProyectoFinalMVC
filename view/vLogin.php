@@ -108,7 +108,7 @@
                             <i class="fas fa-search-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img class="img-fluid" src="webroot/img/portfolio/180503DiagramaDeClases.jpg" alt="">
+                    <img class="img-fluid" src="webroot/img/portfolio/clases.png" alt="">
                 </a>
             </div>
             <div class="col-md-6 col-lg-4">
@@ -266,7 +266,7 @@
                 <div class="col-lg-8 mx-auto">
                     <h2 class="text-secondary text-uppercase mb-0">Diagrama de clases</h2>
                     <hr class="star-dark mb-5">
-                    <img class="img-fluid mb-5" src="webroot/img/portfolio/180503DiagramaDeClases.jpg" alt="">                   
+                    <img class="img-fluid mb-5" src="webroot/img/portfolio/clases.png" alt="">                   
                     <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
                         <i class="fa fa-close"></i>
                         Close Project</a>
