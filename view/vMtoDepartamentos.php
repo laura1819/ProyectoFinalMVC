@@ -142,15 +142,15 @@
                     </table>
                     
                         <?php
-                        if ($totalPaginas != 0) {
-                            if ($pagina != 1) {
+                        if ($totalDeLasPaginas != 0) {
+                            if ($paginaS != 1) {
                                 echo "<a class='paginas' href='?pagina=1&nombre=" . $_REQUEST['nombre'] . "&opcionesBusqueda=" . $_REQUEST['opcionesBusqueda'] . "'>" . '<<' . "</a>";
-                                echo "<a class='paginas' href='?pagina=" . ($pagina - 1) . "&nombre=" . $_REQUEST['nombre'] . "&opcionesBusqueda=" . $_REQUEST['opcionesBusqueda'] . "'>" . '<' . "</a>";
+                                echo "<a class='paginas' href='?pagina=" . ($paginaS - 1) . "&nombre=" . $_REQUEST['nombre'] . "&opcionesBusqueda=" . $_REQUEST['opcionesBusqueda'] . "'>" . '<' . "</a>";
                             }
-                            echo '<label>' . $pagina . ' de ' . $totalPaginas . '</label>';
-                            if ($pagina != $totalPaginas) {
-                                echo "<a class='paginas' href='?pagina=" . ($pagina + 1) . "&nombre=" . $_REQUEST['nombre'] . "&opcionesBusqueda=" . $_REQUEST['opcionesBusqueda'] . "'>" . '>' . "</a>";
-                                echo "<a class='paginas' href='?pagina=" . $totalPaginas . "&nombre=" . $_REQUEST['nombre'] . "&opcionesBusqueda=" . $_REQUEST['opcionesBusqueda'] . "'>" . '>>' . "</a>";
+                            echo '<label>' . $paginaS . ' de ' . $totalDeLasPaginas . '</label>';
+                            if ($paginaS != $totalDeLasPaginas) {
+                                echo "<a class='paginas' href='?pagina=" . ($paginaS + 1) . "&nombre=" . $_REQUEST['nombre'] . "&opcionesBusqueda=" . $_REQUEST['opcionesBusqueda'] . "'>" . '>' . "</a>";
+                                echo "<a class='paginas' href='?pagina=" . $totalDeLasPaginas . "&nombre=" . $_REQUEST['nombre'] . "&opcionesBusqueda=" . $_REQUEST['opcionesBusqueda'] . "'>" . '>>' . "</a>";
                             }
                         } else {
                             echo '<label>0 de 0</label>';

@@ -5,17 +5,13 @@
  */
 
 
-
-
-
-
 if (isset($_REQUEST["pagina"])) {
-    $pagina = $_REQUEST["pagina"];
+    $paginaS = $_REQUEST["pagina"];
 } else {
-    $pagina = 1;
+    $paginaS = 1;
 }
 
-$primerRegistro = ($pagina - 1) * (REGISTROSPAGINA);
+$primerRegistro = ($paginaS - 1) * (REGISTROSPAGINA);
 
 $nombre = $_REQUEST["nombre"];
 
@@ -90,8 +86,8 @@ for ($i = 0; $i < count($_SESSION['departamentos']); $i++) {
 
 
 
-$numRegistros = Departamento::contarDepartamentoPorDescripcion($nombre, $opcionesBusqueda);
-$totalPaginas = ceil($numRegistros / REGISTROSPAGINA);
+$numeroRegistros = Departamento::contarDepartamentoPorDescripcion($nombre, $opcionesBusqueda);
+$totalDeLasPaginas = ceil($numeroRegistros / REGISTROSPAGINA);
 $departamentos = Departamento::buscaDepartamentosPorDescripcion($nombre, $opcionesBusqueda, $primerRegistro, REGISTROSPAGINA);
 
 $_SESSION['departamentos'] = $departamentos;
