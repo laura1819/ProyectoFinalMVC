@@ -12,8 +12,10 @@
 
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
             <input type="submit" name="Añadir" value="Añadir" class="btn btn-success">
+            <input type="submit" name="Importar" value="Importar" class="btn btn-success">
+            <input type="submit" name="Exportar" value="Exportar" class="btn btn-success">
             <input type="submit" name="Volver" value="Volver" class="btn btn-danger">
-            
+
 
             </div>
             </nav>
@@ -50,7 +52,7 @@
                             </div>
 
                         </div><br>
-                       
+
                     </form>    
 
                     <table class="table">
@@ -98,7 +100,7 @@
 
 
 
-                                           
+
 
                                         </form>
                                     </td>      
@@ -116,7 +118,7 @@
                                         <form method="post">
 
 
-                                            
+
 
 
 
@@ -132,12 +134,36 @@
                                         </form>
                                     </td> 
 
-
+                                     
                                     <?php
                                 }
                             }
                             ?>
                     </table>
+                    
+                        <?php
+                        if ($totalPaginas != 0) {
+                            if ($pagina != 1) {
+                                echo "<a class='paginas' href='?pagina=1&nombre=" . $_REQUEST['nombre'] . "&opcionesBusqueda=" . $_REQUEST['opcionesBusqueda'] . "'>" . '<<' . "</a>";
+                                echo "<a class='paginas' href='?pagina=" . ($pagina - 1) . "&nombre=" . $_REQUEST['nombre'] . "&opcionesBusqueda=" . $_REQUEST['opcionesBusqueda'] . "'>" . '<' . "</a>";
+                            }
+                            echo '<label>' . $pagina . ' de ' . $totalPaginas . '</label>';
+                            if ($pagina != $totalPaginas) {
+                                echo "<a class='paginas' href='?pagina=" . ($pagina + 1) . "&nombre=" . $_REQUEST['nombre'] . "&opcionesBusqueda=" . $_REQUEST['opcionesBusqueda'] . "'>" . '>' . "</a>";
+                                echo "<a class='paginas' href='?pagina=" . $totalPaginas . "&nombre=" . $_REQUEST['nombre'] . "&opcionesBusqueda=" . $_REQUEST['opcionesBusqueda'] . "'>" . '>>' . "</a>";
+                            }
+                        } else {
+                            echo '<label>0 de 0</label>';
+                        }
+                        
+                        
+                        echo "<pre>";
+                    print_r($_SESSION['descripcion']); 
+                    echo "</pre>";
+                        
+                        
+                        ?>
+                  
                 </div>
             </div>
         </section>

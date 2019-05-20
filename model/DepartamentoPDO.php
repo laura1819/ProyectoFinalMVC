@@ -28,33 +28,35 @@ Class DepartamentoPDO {
      * @param string $codDepartamento pasa el código del departamento
      * @return array aDepartamento pasa el departamento segun el codigo que hemos introducido
      */
-    public static function buscaDepartamentosPorDescripcion($nombre, $opcionesBusqueda) {
-        $departamentos = []; // declaramos y inicializamos la variable
-
-        $sql = "SELECT * FROM T02_Departamentos where T02_DescDepartamento like (?)"; // contruimos la consulta sql
-        //Según qué opción de búsqueda quieras, se introduce una consulta u otra
-        if ($opcionesBusqueda == 'Baja') { // si le damos a los que estan de baja
-            $sql = "SELECT * FROM T02_Departamentos where T02_DescDepartamento like (?) AND T02_FechaBajaDepartamento<>'0001-01-01'"; // hacemos la siguiente consulta a la base de datos para saberlo 
-        }
-        if ($opcionesBusqueda == 'Alta') { // si le damos a los que estan de alta 
-            $sql = "SELECT * FROM T02_Departamentos where T02_DescDepartamento like (?) AND T02_FechaBajaDepartamento='0001-01-01'"; // hacemos la siguiente consulta a la base de datos para saberlo
-        }
-
-        $resultSet = DBPDO::ejecutaConsulta($sql, ["%$nombre%"]); // ejecutamos la consulta
-        //Guardamos los datos
-        if ($resultSet->rowCount() != 0) {  // guardamos los datos 
-            while ($row = $resultSet->fetchObject()) { // realizamos un bucle con los datos de la base de datos
-                $datosDepartamentos['T02_CodDepartamento'] = $row->T02_CodDepartamento;  // el codigo de departamento
-                $datosDepartamentos['T02_DescDepartamento'] = $row->T02_DescDepartamento; // con la descripcion del departamento
-                $datosDepartamentos['T02_FechaCreacionDepartamento'] = $row->T02_FechaCreacionDepartamento; // con la fecha de creacion 
-                $datosDepartamentos['T02_VolumenDeNegocio'] = $row->T02_VolumenDeNegocio; // con el volumen de negocio
-                $datosDepartamentos['T02_FechaBajaDepartamento'] = $row->T02_FechaBajaDepartamento; // con la fecha de baja del departamento                                    
-
-                array_push($departamentos, $datosDepartamentos); // los añadimos al array  con ARRAY_PUSH
+    public static function buscaDepartamentosPorDescripcion($nombre, $opcionesBusqueda, $primerRegistro,$registrosPagina) {
+        $departamentos = [];                        
+           
+            if (isset($_REQUEST["opcionesBusqueda"])) {
+                if ($_REQUEST['opcionesBusqueda'] == "Baja") {
+                    $query = " and T02_FechaBajaDepartamento<>'0001-01-01'";
+                } else {
+                    if ($_REQUEST['opcionesBusqueda'] == "Alta") {
+                        $query = " and T02_FechaBajaDepartamento='0001-01-01'";
+                    }
+                }
             }
-        }
-
-        return $departamentos; // devolvemos el array con los datos necesarios
+            
+            //Realizamos la consulta a la base de datos
+            $sql = "SELECT * FROM T02_Departamentos where T02_DescDepartamento like (?)";                        
+            $resultSet = DBPDO::ejecutaConsulta($sql . $query. " limit $primerRegistro, $registrosPagina",  ["%$nombre%"]); //Ejecutamos la consulta.                         
+            //Guardamos los datos
+            if ($resultSet->rowCount() != 0) { 
+                while ($row = $resultSet->fetchObject()) {
+                    $datosDepartamentos['T02_CodDepartamento'] = $row->T02_CodDepartamento; 
+                    $datosDepartamentos['T02_DescDepartamento'] = $row->T02_DescDepartamento;
+                    $datosDepartamentos['T02_FechaCreacionDepartamento'] = $row->T02_FechaCreacionDepartamento;
+                    $datosDepartamentos['T02_VolumenDeNegocio'] = $row->T02_VolumenDeNegocio;
+                    $datosDepartamentos['T02_FechaBajaDepartamento'] = $row->T02_FechaBajaDepartamento;                                    
+                    //Los añadimos al array creado anteriormente
+                    array_push($departamentos, $datosDepartamentos);                    
+                }
+            }                      
+            return $departamentos;
     }
 
     /**
@@ -206,7 +208,7 @@ Class DepartamentoPDO {
      * @param 
      * @return 
      */
-    public static function validaCodNoExiste() {
+    public static function validaCodNoExiste($CodDepartamento) {
         $existe = false;
         $sql = "SELECT * FROM T02_Departamentos WHERE T02_CodDepartamento=?";
         $sql = DBPDO::ejecutaConsulta($sql, [$CodDepartamento]);
@@ -215,9 +217,61 @@ Class DepartamentoPDO {
         }
         return $existe;
     }
-
     
+    /**
+     * Función contarDepartamentoPorDescripcion
+     * 
+     * Función para contar departamentos por descripción
+     * 
+     * @function contarDepartamentoPorDescripcion();        
+     * @author Christian Muñiz de la Huerga
+     * @version 1.0
+     * @since 2019-01-15
+     * @param $nombre descripcion que hemos buscado en el input de los departamentos
+     * @param $opcionesBusqueda opciones de busqueda que hemos elegido 
+     * @return $numRegistros esta funcion devuelve un numero de departamentos
+     */
 
+    public static function contarDepartamentoPorDescripcion($nombre,$opcionesBusqueda){
+            if (isset($_REQUEST["opcionesBusqueda"])) {
+                if ($_REQUEST['opcionesBusqueda'] == "Baja") {
+                    $query = " and T02_FechaBajaDepartamento<>'0001-01-01'";
+                } else {
+                    if ($_REQUEST['opcionesBusqueda'] == "Alta") {
+                        $query = " and T02_FechaBajaDepartamento='0001-01-01'";
+                    }
+                }
+            }
+             $sql = "SELECT * FROM T02_Departamentos where T02_DescDepartamento like (?)".$query;
+             $resultSet = DBPDO::ejecutaConsulta($sql, ["%$nombre%"]);
+             $numero=$resultSet->rowCount();
+             return $numero;
+        }
+        
+         public static function importarDepartamentos($fichero) {
+        $ok = true;
+        $fechaHoy = date('Ymd');
+        foreach ($fichero as $departamento) {
+            $codigo = $departamento->T02_CodDepartamento;
+            $descripcion = $departamento->T02_DescDepartamento;
+            $fechaCreacion = $departamento->T02_FechaCreacionDepartamento;
+            $volumenNegocio = $departamento->T02_VolumenDeNegocio;
+            $fechaBaja = $departamento->T02_FechaBajaDepartamento;
+            if (self::validaCodNoExiste($codigo)) { 
+                $ok = false;
+            } else {
+                if ($fechaBaja . length > 0) {
+                    $consulta = "insert into T02_Departamentos values (?,?,?,?,?)";
+                    $resConsulta = DBPDO::ejecutaConsulta($consulta, [$codigo, $descripcion, $fechaCreacion, $volumenNegocio, $fechaBaja]); 
+                } else {
+                    $consulta = "insert into T02_Departamentos (T02_CodDepartamento, T02_DescDepartamento, T02_FechaCreacionDepartamento, T02_VolumenDeNegocio) values (?,?,?,?)";
+                    $resConsulta = DBPDO::ejecutaConsulta($consulta, [$codigo, $descripcion, $fechaCreacion, $volumenNegocio]); 
+                }
+            }
+        }
+        return $ok;
+    }
+        
 }
 
 ?>

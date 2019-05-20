@@ -1,7 +1,7 @@
 <?php
 
   
-
+   
     $codigo=$_SESSION['codigo'];
     $departamento=Departamento::buscaDepartamentosPorCodigo($codigo);
     

@@ -26,7 +26,7 @@
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                        <input type="submit" name="Salir" value="Cerrar Sesion" class="btn btn-danger">
+                        <input type="submit" name="Salir" value="Cerrar Sesion" class="btn btn-danger btn-lg">
                         </li>
                         </ul>
                         </div>

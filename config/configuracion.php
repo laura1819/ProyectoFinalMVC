@@ -18,7 +18,7 @@ require_once 'model/Rest.php';
 // clase para los departamentos
 require_once 'model/Departamento.php';
 
-
+define("REGISTROSPAGINA", 5);
 
 $controladores = [
     'login' => 'controller/cLogin.php',
@@ -39,7 +39,9 @@ $controladores = [
     'verDepartamento' => 'controller/cverDepartamentos.php',
     'rehabilitarDepartamento' => 'controller/crehabilitarDepartamentos.php',
     'bajaDepartamento' => 'controller/cbajaDepartamentos.php', 
-    'rest' => 'controller/cRest.php'
+    'rest' => 'controller/cRest.php',
+    'importar' => 'controller/cImportar.php',
+    'exportar' => 'controller/cExportar.php',
 ];
 
 $vistas = [
@@ -62,6 +64,8 @@ $vistas = [
     'verDepartamento' => 'view/vverDepartamentos.php',
     'rehabilitarDepartamento' => 'view/vrehabilitarDepartamentos.php',
     'bajaDepartamento' => 'view/vbajaDepartamentos.php', 
-    'rest' => 'view/vRest.php'
+    'rest' => 'view/vRest.php',
+    'importar' => 'view/vImportar.php',
+    'exportar' => 'view/vExportar.php',
 ];
 ?>

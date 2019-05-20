@@ -37,7 +37,9 @@
 
 
 
-                                    <input type = "submit" name = "Aceptar" value = "Aceptar" class="btn btn-success">                    
+                                    <input type = "submit" name = "Aceptar" value = "Aceptar" class="btn btn-success">      
+                                    
+                                    
                                 </div>
                             </div>
                         </div>

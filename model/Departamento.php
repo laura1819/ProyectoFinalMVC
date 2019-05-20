@@ -174,10 +174,10 @@ Class Departamento {
      * @param string $opcionesBusqueda criterio de búsqueda
      * @return \Departamento $aDepartamentos array los objetos de departamento y sus atributos
      */
-    public static function buscaDepartamentosPorDescripcion($nombre, $opcionesBusqueda) {
+    public static function buscaDepartamentosPorDescripcion($nombre, $opcionesBusqueda,$primerRegistro,$registrosPagina) {
         $aDepartamentos = [];
         //Usamos buscaDepartamentosPorDescripcion de DepartamentosPDO
-        $departamentos = DepartamentoPDO::buscaDepartamentosPorDescripcion($nombre, $opcionesBusqueda);
+        $departamentos = DepartamentoPDO::buscaDepartamentosPorDescripcion($nombre, $opcionesBusqueda,$primerRegistro,$registrosPagina);
         foreach ($departamentos as $row) {
             //Guardamos los datos de los departamentos encontrados
             $departamento = new Departamento($row[T02_CodDepartamento], $row[T02_DescDepartamento], $row[T02_FechaCreacionDepartamento], $row[T02_VolumenDeNegocio], $row[T02_FechaBajaDepartamento]);
@@ -239,7 +239,7 @@ Class Departamento {
      * @author Laura Fernandez
      * @return 
      */
-    public static function validaCodNoExiste() {
+    public static function validaCodNoExiste($CodDepartamento) {
         return DepartamentoPDO::validaCodNoExiste($CodDepartamento);
     }
 
@@ -308,10 +308,30 @@ Class Departamento {
             }
             return $rehabilitado;            
         }
+        
+        /**
+     * Función contarDepartamentoPorDescripcion
+     * 
+     * Función que cuenta los departamentos por la descripcion
+     * 
+     * @function contarDepartamentoPorDescripcion();        
+     * @author Laura Fernandez
+     * @version 1.0
+     * @since 2019-05-19
+     * @param $descDepartamento Descripción de departamento.
+     * @param $query Query para la búsqueda.
+     * @return número de departamentos que ha encontrado haciendo la busqueda por la descripcion.
+     */
     
         public static function contarDepartamentoPorDescripcion($nombre,$opcionesBusqueda){
             return DepartamentoPDO::contarDepartamentoPorDescripcion($nombre, $opcionesBusqueda);            
         }
+        
+        public static function importarDepartamentos($fichero) {
+        return DepartamentoPDO::importarDepartamentos($fichero);
+    }
+        
+        
 
 }
 
