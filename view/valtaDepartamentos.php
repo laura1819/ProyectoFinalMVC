@@ -1,18 +1,10 @@
 <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
     <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">Añadir Departamento</a>
-
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
             <input type="submit" name="Volver" value="Volver" class="btn btn-danger">
-
             </div>
-            </nav>
-           
-
-
-
-
-
+            </nav>           
             <header class="masthead bg-primary text-white text-center">
                 <div id="login">
                     <h3 class="text-center text-white pt-10">Añade departamento</h3><br>
@@ -28,7 +20,6 @@
                                             echo "<font color='#ffb3b3' size='1px'>$aErrores[CodDepartamento]</font>";
                                             ?> 
                                         </div>
-
                                         <div class="form-group">
                                             Descripción del departamento
 
@@ -44,12 +35,9 @@
                                             echo "<font color='#ffb3b3' size='1px'>$aErrores[VolumenNegocio]</font>";
                                             ?>  
                                         </div>
-
                                         <div class="form-group">
-
                                             <input type="submit" name="Aceptar" value="Aceptar" class="btn btn-success">
                                         </div>
-
                                     </form>
                                 </div>
                             </div>

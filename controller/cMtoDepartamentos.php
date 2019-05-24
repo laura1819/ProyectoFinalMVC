@@ -84,13 +84,15 @@ for ($i = 0; $i < count($_SESSION['departamentos']); $i++) {
 }
 
 
-
-
+//quitar las sesiones/variables
 $numeroRegistros = Departamento::contarDepartamentoPorDescripcion($nombre, $opcionesBusqueda);
 $totalDeLasPaginas = ceil($numeroRegistros / REGISTROSPAGINA);
 $departamentos = Departamento::buscaDepartamentosPorDescripcion($nombre, $opcionesBusqueda, $primerRegistro, REGISTROSPAGINA);
 
+
+
 $_SESSION['departamentos'] = $departamentos;
 $_SESSION['pagina'] = 'mtoDepartamentos';
 require_once $vistas['layout'];
+
 ?>

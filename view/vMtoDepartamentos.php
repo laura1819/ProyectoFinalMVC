@@ -157,9 +157,9 @@
                         }
                         
                         
-                        echo "<pre>";
-                    print_r($_SESSION['descripcion']); 
-                    echo "</pre>";
+                    //    echo "<pre>";
+                //    print_r($_SESSION['descripcion']); 
+                //    echo "</pre>";
                         
                         
                         ?>

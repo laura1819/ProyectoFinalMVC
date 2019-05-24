@@ -32,7 +32,9 @@
                                     <div style="border-width: 4px; border-style: groove; border-color: #2C3E50;">
                                      <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                                          <h6>Api Rest del new york times que recomienda un libro introduciendole un autor, referencia a la api: 
-                                         https://developer.nytimes.com/docs/books-product/1/overview</h6>
+                                         
+                                          <a target="blanck" style="color:white " href="https://developer.nytimes.com/docs/books-product/1/overview">https://developer.nytimes.com/docs/books-product/1/overview</a>
+                                         </h6><br>
                                          Autor: <input type="text" name="autor" value="<?php echo $_REQUEST['autor']; ?>">
                                     <input type="submit" tabindex = "1" name="Buscar" value="Buscar" class="btn btn-success"><br><br>
                                   <?php

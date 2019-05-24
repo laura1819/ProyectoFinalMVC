@@ -7,6 +7,11 @@
  * @modifiedDate 15/04/2019
  * @version 1.5
  */
+echo " <pre> ";
+print_r($_SESSION);
+echo " </pre> ";
+
+
 
 $entradaOk = true;
 $aFormulario = ['usuario' => null,
@@ -46,6 +51,6 @@ if (isset($_REQUEST['Acceder']) && $entradaOk) { // si la entrada es ok
         exit;
     }
 } // y si no seguimos en la pagina del login con el layout pertinente
-$_SESSION['pagina'] = 'login'; 
+$_SESSION['pagina'] = 'login';
 require_once $vistas["layout"];
 ?>
